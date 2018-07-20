@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author  javawendy(lll)
  * @create  2018/7/20 12:47
- * @desc
+ * @desc 消费者从zk的borker上获取数据
  **/
 @Component
 public class KafkaConsumer {

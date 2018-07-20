@@ -33,8 +33,8 @@ public class KafkaController {
 
     @RequestMapping(value = "/send", method = RequestMethod.GET)
     public void WarnInfo() throws Exception {
-        int count=10;
-        for (int i = 0; i < count; i++) {
+       // int count=10;
+       // for (int i = 0; i < count; i++) {
             Runnable task = new Runnable() {
                 @Override
                 public void run() {
@@ -46,7 +46,7 @@ public class KafkaController {
                 }
             };
             executor.execute(task);
-        }
+      //  }
         try {
             Thread.sleep(10000);
             logger.info("一共秒杀了多少数据....");
