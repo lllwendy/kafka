@@ -1,0 +1,9 @@
+启动kafka:bin\windows\kafka-server-start.bat config\server.properties
+创建topic主题：bin\windows\kafka-topics.bat --create --zookeeper 192.168.0.172:2181 --replication-factor 1 --partitions 1 --topic test
+查看topic：bin\windows\kafka-topics.bat --list --zookeeper 192.168.0.172:2181
+查看某个topic:bin\windows\kafka-topics.bat --describe --topic d-topic --zookeeper 192.168.0.172:2181
+删除某个topic:bin\windows\kafka-topics.bat --delete --topic d-topic --zookeeper 192.168.0.172:2181
+启动生产者,可以发送消息：
+bin\windows\kafka-console-producer.bat --broker-list 192.168.0.172:9092 --topic test
+启动消费者：
+bin\windows\kafka-console-consumer.bat --zookeeper 192.168.0.172:2181 --topic test --from-beginning
