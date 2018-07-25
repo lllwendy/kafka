@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -34,21 +35,11 @@ public class KafkaController {
     KafkaMessageSender kafkaMessageSender;
 
 
-    @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public Result WarnInfo(){
-        for (int i = 0; i < 1000; i++) {
-            Runnable  task=new Runnable(){
-                @Override
-                public void run() {
-                    kafkaMessageSender.sendMessToKafka("jktopic","haha");
-                }
-            };
-            executor.execute(task);
-        }
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public Result WarnInfo(@RequestParam(required=true) String message){
         try {
-            Thread.sleep(1000);
-        }
-        catch (InterruptedException e) {
+            kafkaMessageSender.send(message);
+        }catch (Exception  e) {
             e.printStackTrace();
         }
         return Result.ok();

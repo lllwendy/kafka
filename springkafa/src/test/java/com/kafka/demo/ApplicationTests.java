@@ -1,5 +1,7 @@
 package com.kafka.demo;
 
+import com.alibaba.fastjson.JSON;
+import com.kafka.demo.entity.User;
 import com.kafka.demo.kafka.KafkaConsumer;
 import com.kafka.demo.kafka.KafkaProducer;
 import com.kafka.demo.kafka.impl.KafkaMessageSender;
@@ -30,7 +32,10 @@ public class ApplicationTests {
 	@Test
 	public void send () {
 		try {
-			kafkaMessageSender.sendMessToKafka("juntopic","ass");
+			User  user=new  User();
+			user.setUserName("sss");
+			user.setUserPassword("123456");
+			kafkaMessageSender.send(JSON.toJSONString(user));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
