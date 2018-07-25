@@ -1,6 +1,8 @@
 package com.kafka.demo.controller;
 
+import com.kafka.demo.entity.Result;
 import com.kafka.demo.kafka.KafkaProducer;
+import com.kafka.demo.kafka.impl.KafkaMessageSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,29 +31,26 @@ public class KafkaController {
             new LinkedBlockingQueue<Runnable>(10000));
 
     @Autowired
-    KafkaProducer kafkaProducer;
+    KafkaMessageSender kafkaMessageSender;
+
 
     @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public void WarnInfo() throws Exception {
-       // int count=10;
-       // for (int i = 0; i < count; i++) {
-            Runnable task = new Runnable() {
+    public Result WarnInfo(){
+        for (int i = 0; i < 1000; i++) {
+            Runnable  task=new Runnable(){
                 @Override
                 public void run() {
-                    try {
-                        kafkaProducer.sendMessToKafka();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    kafkaMessageSender.sendMessToKafka("jktopic","haha");
                 }
             };
             executor.execute(task);
-      //  }
+        }
         try {
-            Thread.sleep(10000);
-            logger.info("一共秒杀了多少数据....");
-        } catch (InterruptedException e) {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return Result.ok();
     }
 }

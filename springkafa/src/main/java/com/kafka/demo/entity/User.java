@@ -1,4 +1,4 @@
-package com.kafka.demo.kafka;
+package com.kafka.demo.entity;
 
 import java.io.Serializable;
 

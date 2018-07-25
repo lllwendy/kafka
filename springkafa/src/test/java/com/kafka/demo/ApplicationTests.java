@@ -2,6 +2,7 @@ package com.kafka.demo;
 
 import com.kafka.demo.kafka.KafkaConsumer;
 import com.kafka.demo.kafka.KafkaProducer;
+import com.kafka.demo.kafka.impl.KafkaMessageSender;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,16 +23,14 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationTests {
-	@Autowired
-	KafkaProducer kafkaProducer;
 
 	@Autowired
-	KafkaConsumer kafkaConsumer;
+	KafkaMessageSender  kafkaMessageSender;
 
 	@Test
 	public void send () {
 		try {
-			kafkaProducer.sendMessToKafka();
+			kafkaMessageSender.sendMessToKafka("juntopic","ass");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
