@@ -3,11 +3,12 @@ package com.kafka.demo.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
- * 页面响应entity
- * 创建者 张志朋
- * 创建时间	2018年3月8日
- */
+ * @author  javawendy(lll)
+ * @create  2018/7/25 17:29
+ * @desc 页面响应
+ **/
 public class Result extends HashMap<String, Object> {
 
 	private static final long serialVersionUID = 1L;

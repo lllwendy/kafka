@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
 import com.kafka.demo.kafka.impl.KafkaMessageConsumer;
@@ -30,7 +28,8 @@ public class KafkaConsumer implements KafkaMessageConsumer {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            ack.acknowledge();//手动提交偏移量
+            // 手动提交偏移量
+            ack.acknowledge();
         }
     }
 }

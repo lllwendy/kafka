@@ -1,5 +1,5 @@
 package com.kafka.demo.kafka.impl;
-import org.springframework.kafka.core.KafkaTemplate;
+
 
 public interface KafkaMessageSender {
     /**
