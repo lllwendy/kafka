@@ -33,7 +33,7 @@ public class ApplicationTests {
 	public void send () {
 		try {
 			User  user=new  User();
-			user.setUserName("sss2");
+			user.setUserName("sss3");
 			user.setUserPassword("1234567");
 			kafkaMessageSender.send(JSON.toJSONString(user));
 		} catch (Exception e) {

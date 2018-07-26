@@ -10,7 +10,7 @@ public interface KafkaMessageConsumer {
      * 消费消息
      * @param message
      */
-    public  abstract  void  receive(ConsumerRecord<Integer, String> message, Acknowledgment ack, int threads);
+    public  abstract  void  receive(String message, Acknowledgment ack, int threads);
 
     public  abstract  void shutdown();
 }

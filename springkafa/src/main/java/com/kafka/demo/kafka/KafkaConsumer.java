@@ -31,12 +31,12 @@ public class KafkaConsumer implements KafkaMessageConsumer {
 
     @Override
     @KafkaListener(topics = {"${kafka.topic.foo}"})
-    public  void  receive(ConsumerRecord<Integer, String> message, Acknowledgment ack, int threads) {
+    public  void  receive(String message, Acknowledgment ack, int threads) {
         try {
             executors = new ThreadPoolExecutor(threads, threads, 0L, TimeUnit.MILLISECONDS,
                     new ArrayBlockingQueue(1000), new ThreadPoolExecutor.CallerRunsPolicy());
 
-            logger.info("消费监听："+message.value());
+            logger.info("消费监听："+message);
             executors.submit(new Worker(message));
         } catch (Exception e) {
             e.printStackTrace();
